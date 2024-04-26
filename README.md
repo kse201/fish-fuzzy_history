@@ -1,4 +1,4 @@
-# fish-peco_history
+# fish-fuzzy_history
 
 ## Usage
 
@@ -6,6 +6,6 @@ like this.
 
 ```fish
 function fish_user_key_bindings
-  bind \cr peco_history
+  bind \cr fuzzy_history
 end
 ```

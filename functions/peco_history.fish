@@ -1,15 +1,15 @@
-function peco_history
+function fuzzy_history
     set -l query (commandline)
 
     if test -n $query
-        set peco_flags --query "$query"
+        set query --query "$query"
     end
 
-    set prompt 'HISTORY>'
+    set prompt --prompt "HISTORY> "
     if set -q $argv
-        history | peco --prompt $prompt $peco_flags | read line
+        history | sed "s/\r//" | fzf $prompt $query | read line
     else
-        history | peco --prompt $prompt --query $argv | read line
+        history | sed "s/\r//" | fzf $prompt --query $argv | read line
     end
     commandline $line
 end
