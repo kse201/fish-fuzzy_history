@@ -2,14 +2,14 @@ function fuzzy_history
     set -l query (commandline)
 
     if test -n $query
-        set query --query "$query"
+        set query "$query"
     end
 
-    set prompt --prompt "HISTORY> "
+    set prompt "HISTORY> "
     if set -q $argv
-        history | sed "s/\r//" | fzf $prompt $query | read line
+        history | sed "s/\r//" | fzf --prompt $prompt --query $query | read line
     else
-        history | sed "s/\r//" | fzf $prompt --query $argv | read line
+        history | sed "s/\r//" | fzf --prompt $prompt --query $argv | read line
     end
     commandline $line
 end
